@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ChromeWebDriverFactory implements BrowserActions {
+public class ChromeWebDriverFactory implements utils.BrowserActions {
     private final WebDriver driver;
 
     public ChromeWebDriverFactory() {
@@ -39,40 +39,34 @@ public class ChromeWebDriverFactory implements BrowserActions {
         return driver;
     }
 
-    @Override
-    public void navigateTo(String url) {
+    public void navigateToUrl(String url) {
         driver.navigate().to(url);
     }
 
-    @Override
-    public WebElement find(By locator) {
+    public WebElement findElement(By locator) {
         return driver.findElement(locator);
     }
 
-    @Override
-    public void click(By locator) {
-        find(locator).click();
+    public void clickToElement(By locator) {
+        findElement(locator).click();
     }
 
-    @Override
-    public void type(By locator, String text) {
-        WebElement element = find(locator);
+    public void typeText(By locator, String text) {
+        WebElement element = findElement(locator);
         element.clear();
         element.sendKeys(text);
     }
 
-    @Override
     public String getText(By locator) {
-        return find(locator).getText();
+        return findElement(locator).getText();
     }
 
-    @Override
     public void waitForVisible(By locator, Duration timeout) {
         new WebDriverWait(driver, timeout)
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    @Override
+
     public void quit() {
         if (driver != null) {
             driver.quit();

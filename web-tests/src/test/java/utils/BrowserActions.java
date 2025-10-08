@@ -7,21 +7,21 @@ import org.openqa.selenium.WebElement;
 import java.time.Duration;
 
 public interface BrowserActions {
-    WebDriver getDriver();
+    public WebDriver getDriver();
 
-    void navigateToUrl(String url);
+    public void navigateToUrl(String url);
 
     WebElement findElement(By locator);
 
-    void clickToElement(By locator);
+    public void clickToElement(By locator);
 
-    void type(By locator, String text);
+    public void typeText(By locator, String text);
 
     String getText(By locator);
 
     void waitForVisible(By locator, Duration timeout);
 
-    void quit();
+    public void quit();
 }
 
 
