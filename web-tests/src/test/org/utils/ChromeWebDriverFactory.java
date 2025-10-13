@@ -34,7 +34,7 @@ public class ChromeWebDriverFactory {
         return driver.findElement(locator);
     }
 
-    public void quit() {
+    public static void quit() {
         if (driver != null) {
             driver.quit();
             driver = null;

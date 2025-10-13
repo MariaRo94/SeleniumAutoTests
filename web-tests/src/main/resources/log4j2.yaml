@@ -1,0 +1,41 @@
+Configuration:
+  status: warn
+  name: DefaultYamlConfig
+  Properties:
+    Property:
+      - name: LOG_PATTERN
+        value: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+  Appenders:
+    Console:
+      name: Console
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: "${LOG_PATTERN}"
+    RollingFile:
+      name: RollingFile
+      fileName: logs/app.log
+      filePattern: logs/app-%d{yyyy-MM-dd}-%i.log.gz
+      PatternLayout:
+        pattern: "${LOG_PATTERN}"
+      Policies:
+        TimeBasedTriggeringPolicy:
+          interval: 1
+          modulate: true
+        SizeBasedTriggeringPolicy:
+          size: 10 MB
+      DefaultRolloverStrategy:
+        max: 7
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+        - ref: Console
+        - ref: RollingFile
+    Logger:
+      - name: org.openqa.selenium
+        level: warn
+        additivity: false
+        AppenderRef:
+          - ref: Console
+
+
