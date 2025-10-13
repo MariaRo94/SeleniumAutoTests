@@ -21,7 +21,11 @@ public interface BrowserActions {
 
     void waitForVisible(By locator, Duration timeout);
 
-    public void quit();
+    public static void quit() {};
+
+    public static void startDriver() {};
+
+    public static void createWebDriver() {};
 }
 
 
