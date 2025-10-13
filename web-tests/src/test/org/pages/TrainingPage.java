@@ -1,5 +1,6 @@
 package org.pages;
 
+import lombok.Getter;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -31,6 +32,8 @@ public class TrainingPage extends BasePage {
     @FindBy(xpath = "//button[@id ='openModalBtn']")
     private WebElement buttonOpenModal;
 
+
+    @Getter
     @FindBy(xpath = "//input[@type='text' and @id ='textInput']")
     private WebElement textInputArea;
 
@@ -40,22 +43,27 @@ public class TrainingPage extends BasePage {
     @FindBy(xpath = "//span[@class ='close-btn']")
     private WebElement closeModalWindowBtn;
 
+    @Getter
     @FindBy(xpath = "//input[@type ='text' and @id = 'name']")
     private WebElement inputNameArea;
 
+
+    @Getter
     @FindBy(xpath = "//input[@type ='email' and @id = 'email']")
     private WebElement inputEmailArea;
 
+    @Getter
+    @FindBy(xpath = "//div[@class ='message' and @id = 'messageBox']")
+    private WebElement messageBox;
+
     public TrainingPage clickToOpeModalButton(){
-        new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOf(buttonOpenModal));
+        explicityWaitElement(buttonOpenModal);
         buttonOpenModal.click();
         return this;
     }
 
     public TrainingPage openModalWindow(){
-        new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOf(modalWindow));
+        explicityWaitElement(modalWindow);
         return this;
     }
 
@@ -70,34 +78,31 @@ public class TrainingPage extends BasePage {
     }
 
     public TrainingPage closeModalWindow(){
-        new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOf(closeModalWindowBtn));
+        explicityWaitElement(closeModalWindowBtn);
         closeModalWindowBtn.click();
         return this;
     }
 
 
     public TrainingPage open() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(webDriver ->
-                "complete".equals(((JavascriptExecutor) webDriver)
-                        .executeScript("return document.readyState"))
-        );
+        pageBeLoaded();
         driver.get(URL);
         log.info("Выполнен переход по указанному URL");
         return this;
     }
 
 
-    public TrainingPage typeIntoInput(String text) {
-        new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOf(textInputArea));
-        textInputArea.clear();
-        log.info("Поле очищено");
-        textInputArea.sendKeys(text);
-        log.info("Текст введен в поле");
+    public TrainingPage typeIntoInputArea(WebElement element, String text) {
+        explicityWaitElement(element);
+        log.info("Поле ввода найдено");
+        element.clear();
+        log.info("Поле ввода очищено");
+        element.sendKeys(text);
+        log.info("Текст введен в поле ввода");
         return this;
     }
+
+
 
     public String getInputValue() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
