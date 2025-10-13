@@ -30,6 +30,12 @@
             <version>5.14.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.17</version>
+            <scope>test</scope>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
@@ -62,12 +68,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.42</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.guicedee.services/sl4j -->
-        <dependency>
-            <groupId>com.guicedee.services</groupId>
-            <artifactId>sl4j</artifactId>
-            <version>1.0.13.5</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
