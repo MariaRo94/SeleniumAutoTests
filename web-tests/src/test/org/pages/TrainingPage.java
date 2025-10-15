@@ -1,9 +1,6 @@
 package org.pages;
 
 import lombok.Getter;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +12,7 @@ import org.utils.WebDriverFactory;
 
 import java.time.Duration;
 
+@Getter
 public class TrainingPage extends BasePage {
 
     private static final Logger log = LoggerFactory.getLogger(TrainingPage.class);
@@ -27,49 +25,39 @@ public class TrainingPage extends BasePage {
     }
 
 
-    @Getter
     @FindBy(xpath = "//button[@id ='openModalBtn']")
     private WebElement buttonOpenModal;
 
 
-    @Getter
     @FindBy(xpath = "//input[@type='text' and @id ='textInput']")
     private WebElement textInputArea;
 
-    @Getter
     @FindBy(xpath = "//div[@class ='modal-content']")
     private WebElement modalWindow;
 
-    @Getter
     @FindBy(xpath = "//span[@class ='close-btn']")
     private WebElement closeModalWindowBtn;
 
-    @Getter
     @FindBy(xpath = "//input[@type ='text' and @id = 'name']")
     private WebElement inputNameArea;
 
 
-    @Getter
     @FindBy(xpath = "//input[@type ='email' and @id = 'email']")
     private WebElement inputEmailArea;
 
-    @Getter
     @FindBy(xpath = "//div[@class ='message' and @id = 'messageBox']")
     private WebElement messageBox;
 
-    @Getter
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement submitNameEmailButton;
 
-    public TrainingPage clickToButton(WebElement button) {
+    public void clickToButton(WebElement button) {
         explicityWaitElement(button);
         button.click();
-        return this;
     }
 
-    public TrainingPage openModalWindow(WebElement elementModalWindow) {
+    public void openModalWindow(WebElement elementModalWindow) {
         explicityWaitElement(elementModalWindow);
-        return this;
     }
 
     public boolean isModalWindowOpened(WebElement modalWindow) {
@@ -91,14 +79,13 @@ public class TrainingPage extends BasePage {
     }
 
 
-    public TrainingPage typeIntoInputArea(WebElement element, String text) {
+    public void typeIntoInputArea(WebElement element, String text) {
         explicityWaitElement(element);
         log.info("Input field is finded");
         element.clear();
         log.info("Input field is cleared");
         element.sendKeys(text);
         log.info("Text is input to input field");
-        return this;
     }
 
     public String getInputValue(WebElement input) {
