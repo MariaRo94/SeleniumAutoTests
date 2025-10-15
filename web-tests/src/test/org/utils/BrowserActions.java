@@ -25,7 +25,7 @@ public interface BrowserActions {
 
     public static void startDriver() {};
 
-    public static void createWebDriver() {};
+    public static void createWebDriver(){};
 }
 
 

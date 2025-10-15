@@ -35,8 +35,6 @@ public abstract class BasePage {
                         .executeScript("return document.readyState"))
         );
     }
-
-
 }
 
 

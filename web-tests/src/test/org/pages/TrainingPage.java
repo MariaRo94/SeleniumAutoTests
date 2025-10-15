@@ -26,9 +26,8 @@ public class TrainingPage extends BasePage {
         super(driverFactory);
     }
 
-    @FindBy(tagName = "h1")
-    private WebElement header;
 
+    @Getter
     @FindBy(xpath = "//button[@id ='openModalBtn']")
     private WebElement buttonOpenModal;
 
@@ -37,9 +36,11 @@ public class TrainingPage extends BasePage {
     @FindBy(xpath = "//input[@type='text' and @id ='textInput']")
     private WebElement textInputArea;
 
+    @Getter
     @FindBy(xpath = "//div[@class ='modal-content']")
     private WebElement modalWindow;
 
+    @Getter
     @FindBy(xpath = "//span[@class ='close-btn']")
     private WebElement closeModalWindowBtn;
 
@@ -58,20 +59,20 @@ public class TrainingPage extends BasePage {
 
     @Getter
     @FindBy(xpath = "//button[@type='submit']")
-    private WebElement submitButton;
+    private WebElement submitNameEmailButton;
 
-    public TrainingPage clickToOpeModalButton() {
-        explicityWaitElement(buttonOpenModal);
-        buttonOpenModal.click();
+    public TrainingPage clickToButton(WebElement button) {
+        explicityWaitElement(button);
+        button.click();
         return this;
     }
 
-    public TrainingPage openModalWindow() {
-        explicityWaitElement(modalWindow);
+    public TrainingPage openModalWindow(WebElement elementModalWindow) {
+        explicityWaitElement(elementModalWindow);
         return this;
     }
 
-    public boolean isModalWindowOpened() {
+    public boolean isModalWindowOpened(WebElement modalWindow) {
         try {
             return modalWindow.isDisplayed();
         } catch (NoSuchElementException e) {
@@ -80,11 +81,6 @@ public class TrainingPage extends BasePage {
         return false;
     }
 
-    public TrainingPage closeModalWindow() {
-        explicityWaitElement(closeModalWindowBtn);
-        closeModalWindowBtn.click();
-        return this;
-    }
 
 
     public TrainingPage open() {
@@ -105,9 +101,9 @@ public class TrainingPage extends BasePage {
         return this;
     }
 
-    public String getInputValue() {
+    public String getInputValue(WebElement input) {
         new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOf(textInputArea));
+                .until(ExpectedConditions.visibilityOf(input));
         return textInputArea.getAttribute("value");
     }
 

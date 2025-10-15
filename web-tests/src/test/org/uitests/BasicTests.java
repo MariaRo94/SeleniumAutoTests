@@ -16,7 +16,7 @@ import org.pages.TrainingPage;
 
 public class BasicTests {
     private static final Logger log = LoggerFactory.getLogger(BasicTests.class);
-    private final WebDriverFactory driverFactory = new WebDriverFactory();
+    private static final WebDriverFactory driverFactory = new WebDriverFactory();
 
     @BeforeAll
     static void setup(){
@@ -39,7 +39,7 @@ public class BasicTests {
         WebDriverFactory.addChromeOption("--headless");
         TrainingPage trainingPage = Pages.trainingPage(driverFactory).open();
         trainingPage.typeIntoInputArea(trainingPage.getTextInputArea(), "OTUS");
-        Assertions.assertEquals("OTUS", trainingPage.getInputValue());
+        Assertions.assertEquals("OTUS", trainingPage.getInputValue(trainingPage.getTextInputArea()));
     }
 
     @Test
@@ -47,11 +47,11 @@ public class BasicTests {
     public void secondBaseTest() throws NoSuchElementException{
         WebDriverFactory.addChromeOption("--kiosk");
         TrainingPage trainingPage = Pages.trainingPage(driverFactory).open();
-        trainingPage.clickToOpeModalButton();
-        trainingPage.openModalWindow();
-        Assertions.assertTrue(trainingPage.isModalWindowOpened(),
+        trainingPage.clickToButton(trainingPage.getButtonOpenModal());
+        trainingPage.openModalWindow(trainingPage.getModalWindow());
+        Assertions.assertTrue(trainingPage.isModalWindowOpened(trainingPage.getModalWindow()),
                 "Модальное окно не открылось после клика на кнопку");
-        trainingPage.closeModalWindow();
+        trainingPage.clickToButton(trainingPage.getCloseModalWindowBtn());
     }
 
     @Test
@@ -66,6 +66,7 @@ public class BasicTests {
         TrainingPage trainingPage = Pages.trainingPage(driverFactory).open();
         trainingPage.typeIntoInputArea(trainingPage.getInputNameArea(), name);
         trainingPage.typeIntoInputArea(trainingPage.getInputEmailArea(), email);
+        trainingPage.clickToButton(trainingPage.getSubmitNameEmailButton());
         Assertions.assertTrue(trainingPage.getMessageBox().getText().contains(name));
         Assertions.assertTrue(trainingPage.getMessageBox().getText().contains(email));
     }

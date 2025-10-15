@@ -20,7 +20,7 @@ public class WebDriverFactory implements BrowserActions {
     private static final Logger log = LoggerFactory.getLogger(WebDriverFactory.class);
     private static WebDriver driver;
     private static boolean isInitialized = false;
-    private static List<String> chromeOptionsList = new ArrayList<>();
+    private static final List<String> chromeOptionsList = new ArrayList<>();
     public static void createWebDriver() {
         if (driver != null) {
             log.info("WebDriver is already created");
@@ -54,7 +54,7 @@ public class WebDriverFactory implements BrowserActions {
             for (String option : options) {
                 if (option != null && !option.trim().isEmpty()) {
                     chromeOptionsList.add(option);
-                    log.info("Chrome option added: {}", option);
+                    log.info("Chrome options added: {}", option);
                 }
             }
         }
@@ -97,6 +97,8 @@ public class WebDriverFactory implements BrowserActions {
         driver.findElement(locator).click();
     }
 
+
+
     @Override
     public void typeText(By locator, String text) {
         waitForVisible(locator, Duration.ofSeconds(5));
@@ -125,16 +127,6 @@ public class WebDriverFactory implements BrowserActions {
         } else {
             log.info("quit called but driver was already null");
         }
-    }
-
-    public void setCookies(String name, String value) {
-        log.info("Adding cookie: {}=***", name);
-        driver.manage().addCookie(new Cookie(name, value));
-    }
-
-    public void setTimeouts(int seconds) {
-        log.info("Setting implicit wait to {} seconds", seconds);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
     }
 
     public void windowMaximize() {
