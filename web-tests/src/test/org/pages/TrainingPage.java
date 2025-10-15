@@ -56,28 +56,31 @@ public class TrainingPage extends BasePage {
     @FindBy(xpath = "//div[@class ='message' and @id = 'messageBox']")
     private WebElement messageBox;
 
-    public TrainingPage clickToOpeModalButton(){
+    @Getter
+    @FindBy(xpath = "//button[@type='submit']")
+    private WebElement submitButton;
+
+    public TrainingPage clickToOpeModalButton() {
         explicityWaitElement(buttonOpenModal);
         buttonOpenModal.click();
         return this;
     }
 
-    public TrainingPage openModalWindow(){
+    public TrainingPage openModalWindow() {
         explicityWaitElement(modalWindow);
         return this;
     }
 
-    public boolean isModalWindowOpened(){
-       try {
-           return modalWindow.isDisplayed();
-       }
-       catch (NoSuchElementException e){
-           log.error(e.getMessage()+ "Модальное окно не открылось");
-       }
+    public boolean isModalWindowOpened() {
+        try {
+            return modalWindow.isDisplayed();
+        } catch (NoSuchElementException e) {
+            log.error(e.getMessage() + "Modal window is not opened");
+        }
         return false;
     }
 
-    public TrainingPage closeModalWindow(){
+    public TrainingPage closeModalWindow() {
         explicityWaitElement(closeModalWindowBtn);
         closeModalWindowBtn.click();
         return this;
@@ -87,22 +90,20 @@ public class TrainingPage extends BasePage {
     public TrainingPage open() {
         pageBeLoaded();
         driver.get(URL);
-        log.info("Выполнен переход по указанному URL");
+        log.info("The specified URL has been navigated to.");
         return this;
     }
 
 
     public TrainingPage typeIntoInputArea(WebElement element, String text) {
         explicityWaitElement(element);
-        log.info("Поле ввода найдено");
+        log.info("Input field is finded");
         element.clear();
-        log.info("Поле ввода очищено");
+        log.info("Input field is cleared");
         element.sendKeys(text);
-        log.info("Текст введен в поле ввода");
+        log.info("Text is input to input field");
         return this;
     }
-
-
 
     public String getInputValue() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
@@ -110,9 +111,5 @@ public class TrainingPage extends BasePage {
         return textInputArea.getAttribute("value");
     }
 
-    public void getAlert(){
-        Alert alert = driver.switchTo().alert();
-
-    }
 }
 
