@@ -1,5 +1,6 @@
-package org.pages;
+package classes.pages;
 
+import classes.utils.WebDriverFactory;
 import lombok.Getter;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -8,7 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.utils.WebDriverFactory;
 
 import java.time.Duration;
 
@@ -19,15 +19,12 @@ public class TrainingPage extends BasePage {
 
     private static final String URL = "https://otus.home.kartushin.su/training.html";
 
-
     public TrainingPage(WebDriverFactory driverFactory) {
         super(driverFactory);
     }
 
-
     @FindBy(xpath = "//button[@id ='openModalBtn']")
     private WebElement buttonOpenModal;
-
 
     @FindBy(xpath = "//input[@type='text' and @id ='textInput']")
     private WebElement textInputArea;
@@ -69,15 +66,12 @@ public class TrainingPage extends BasePage {
         return false;
     }
 
-
-
     public TrainingPage open() {
         pageBeLoaded();
         driver.get(URL);
         log.info("The specified URL has been navigated to.");
         return this;
     }
-
 
     public void typeIntoInputArea(WebElement element, String text) {
         explicityWaitElement(element);
@@ -93,6 +87,5 @@ public class TrainingPage extends BasePage {
                 .until(ExpectedConditions.visibilityOf(input));
         return textInputArea.getAttribute("value");
     }
-
 }
 

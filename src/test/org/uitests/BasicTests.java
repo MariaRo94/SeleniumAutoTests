@@ -6,13 +6,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.utils.WebDriverFactory;
-import org.pages.Pages;
-import org.pages.TrainingPage;
+import classes.utils.WebDriverFactory;
+import classes.pages.TrainingPage;
 
 public class BasicTests {
     private static final Logger log = LoggerFactory.getLogger(BasicTests.class);
@@ -37,7 +35,7 @@ public class BasicTests {
     @DisplayName("Открытие браузера в headless-режиме")
     public void firstBasicTest() throws NoSuchElementException{
         WebDriverFactory.addChromeOption("--headless");
-        TrainingPage trainingPage = Pages.trainingPage(driverFactory).open();
+        TrainingPage trainingPage = new TrainingPage(driverFactory).open();
         trainingPage.typeIntoInputArea(trainingPage.getTextInputArea(), "OTUS");
         Assertions.assertEquals("OTUS", trainingPage.getInputValue(trainingPage.getTextInputArea()));
     }
@@ -46,7 +44,7 @@ public class BasicTests {
     @DisplayName("Открытие модального окна")
     public void secondBaseTest() throws NoSuchElementException{
         WebDriverFactory.addChromeOption("--kiosk");
-        TrainingPage trainingPage = Pages.trainingPage(driverFactory).open();
+        TrainingPage trainingPage = new TrainingPage(driverFactory).open();
         trainingPage.clickToButton(trainingPage.getButtonOpenModal());
         trainingPage.openModalWindow(trainingPage.getModalWindow());
         Assertions.assertTrue(trainingPage.isModalWindowOpened(trainingPage.getModalWindow()),
@@ -63,7 +61,7 @@ public class BasicTests {
         WebDriverFactory.addChromeOption("--start-fullscreen");
 
 
-        TrainingPage trainingPage = Pages.trainingPage(driverFactory).open();
+        TrainingPage trainingPage = new TrainingPage(driverFactory).open();
         trainingPage.typeIntoInputArea(trainingPage.getInputNameArea(), name);
         trainingPage.typeIntoInputArea(trainingPage.getInputEmailArea(), email);
         trainingPage.clickToButton(trainingPage.getSubmitNameEmailButton());
