@@ -18,11 +18,13 @@ public class BasicTests {
 
     @BeforeAll
     static void setup(){
+
         WebDriverFactory.createWebDriver();
     }
 
     @BeforeEach
     void startDriver(){
+
         WebDriverFactory.startDriver();
     }
 
@@ -55,8 +57,8 @@ public class BasicTests {
     @Test
     @DisplayName("Ввод ФИО и email в поле ввода")
     public void thirdTest() throws NoSuchElementException{
-        String name = "Maria Rodionova";
-        String email = "masha@mail.ru";
+        final String name = "Maria Rodionova";
+        final String email = "masha@mail.ru";
 
         WebDriverFactory.addChromeOption("--start-fullscreen");
 

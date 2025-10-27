@@ -23,29 +23,28 @@ public class TrainingPage extends BasePage {
         super(driverFactory);
     }
 
-    @FindBy(xpath = "//button[@id ='openModalBtn']")
+    @FindBy(css = "#openModalBtn")
     private WebElement buttonOpenModal;
 
-    @FindBy(xpath = "//input[@type='text' and @id ='textInput']")
+    @FindBy(css = "#textInput")
     private WebElement textInputArea;
 
-    @FindBy(xpath = "//div[@class ='modal-content']")
+    @FindBy(css = ".modal-content")
     private WebElement modalWindow;
 
-    @FindBy(xpath = "//span[@class ='close-btn']")
+    @FindBy(css = "#closeModal#closeModal")
     private WebElement closeModalWindowBtn;
 
-    @FindBy(xpath = "//input[@type ='text' and @id = 'name']")
+    @FindBy(css = "#name")
     private WebElement inputNameArea;
 
-
-    @FindBy(xpath = "//input[@type ='email' and @id = 'email']")
+    @FindBy(css = "#email")
     private WebElement inputEmailArea;
 
-    @FindBy(xpath = "//div[@class ='message' and @id = 'messageBox']")
+    @FindBy(css = "#messageBox.message")
     private WebElement messageBox;
 
-    @FindBy(xpath = "//button[@type='submit']")
+    @FindBy(css = "button[type=\"submit\"]")
     private WebElement submitNameEmailButton;
 
     public void clickToButton(WebElement button) {
