@@ -44,7 +44,7 @@ public class TrainingPage extends BasePage {
     @FindBy(css = "#messageBox.message")
     private WebElement messageBox;
 
-    @FindBy(css = "button[type=\"submit\"]")
+    @FindBy(css = "button[type='submit']")
     private WebElement submitNameEmailButton;
 
     public void clickToButton(WebElement button) {
