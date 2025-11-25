@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import classes.utils.WebDriverFactory;
 import classes.pages.TrainingPage;
+import classes.utils.BrowserType;
 
 public class TrainingPageTest {
     private static final Logger log = LoggerFactory.getLogger(TrainingPageTest.class);
@@ -19,7 +20,7 @@ public class TrainingPageTest {
     @BeforeAll
     static void setup() {
 
-        driverFactory.createWebDriver();
+        driverFactory.createWebDriver(BrowserType.CHROME);
     }
 
     @BeforeEach
