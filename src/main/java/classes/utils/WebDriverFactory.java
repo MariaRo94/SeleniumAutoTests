@@ -13,9 +13,10 @@ import java.util.List;
 public class WebDriverFactory  {
     private static final Logger log = LoggerFactory.getLogger(WebDriverFactory.class);
     private WebDriver driver;
-    private static boolean isInitialized = false;
+    private boolean isInitialized = false;
     private static final List<String> chromeOptionsList = new ArrayList<>();
     public void createWebDriver() {
+
         if (driver != null) {
             log.info("WebDriver is already created");
             return;
