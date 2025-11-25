@@ -12,10 +12,10 @@ import java.util.List;
 
 public class WebDriverFactory  {
     private static final Logger log = LoggerFactory.getLogger(WebDriverFactory.class);
-    private static WebDriver driver;
+    private WebDriver driver;
     private static boolean isInitialized = false;
     private static final List<String> chromeOptionsList = new ArrayList<>();
-    public static void createWebDriver() {
+    public void createWebDriver() {
         if (driver != null) {
             log.info("WebDriver is already created");
             return;
@@ -36,14 +36,14 @@ public class WebDriverFactory  {
         driver = new ChromeDriver(options);
     }
 
-    public static void addChromeOption(String option) {
+    public void addChromeOption(String option) {
         if (option != null && !option.trim().isEmpty()) {
             chromeOptionsList.add(option);
             log.info("Chrome option added: {}", option);
         }
     }
 
-    public static void startDriver() {
+    public void startDriver() {
         if (driver == null) {
             log.info("Starting WebDriver");
             createWebDriver();
@@ -53,10 +53,11 @@ public class WebDriverFactory  {
     }
 
     public WebDriver getDriver() {
+
         return driver;
     }
 
-    public static void quit() {
+    public void quit() {
         if (driver != null) {
             log.info("Quitting WebDriver");
             driver.quit();

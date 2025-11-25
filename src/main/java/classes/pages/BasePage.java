@@ -16,7 +16,7 @@ public abstract class BasePage {
     BasePage(WebDriverFactory driverFactory) {
         WebDriver existing = driverFactory.getDriver();
         if (existing == null) {
-            WebDriverFactory.startDriver();
+            driverFactory.startDriver();
             existing = driverFactory.getDriver();
         }
         this.driver = existing;
