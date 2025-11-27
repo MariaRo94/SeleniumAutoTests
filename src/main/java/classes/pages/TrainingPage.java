@@ -17,7 +17,7 @@ public class TrainingPage extends BasePage {
 
     private static final Logger log = LoggerFactory.getLogger(TrainingPage.class);
 
-    private static final String URL = System.getProperty("base.url");
+    private static final String URL = System.getProperty("base.url", "https://otus.home.kartushin.su/training.html");
 
     public TrainingPage(WebDriverFactory driverFactory) {
         super(driverFactory);
