@@ -100,13 +100,4 @@ public class WebDriverFactory {
         }
     }
 
-
-    public static boolean isBrowserSupported(String browserName) {
-        try {
-            BrowserType.valueOf(browserName.toUpperCase());
-            return true;
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-    }
 }
